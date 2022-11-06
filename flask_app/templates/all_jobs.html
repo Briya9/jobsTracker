@@ -1,12 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='all_jobs_styles.css') }}">
+    <title>Dashboard</title>
+    <style>
+    </style>
 </head>
+
 <body>
-    <h1>Hello World!!!</h1>
-</body>
-</html>
+    <div class="container" , method="POST">
+        <p class="large big-col">Welcome, {{ this_user.first_name }}!!!</p>
+        <p class="col"><a href="/logout"> Logout</a></p>
+    </div>
+    <div class="row">
+        <div class="column">
+            <table>
+                <tr>
+                    <th>Job</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+                {% for job in all_jobs %}
+                {% if job.pro_id == None %}
+                <tr>
+                    <td>{{ job.title }}{{ job.id }}</td>
+                    <td>{{ job.location }}</td>
+                    <td>
+                        <a href="/jobs/{{job.id}}/view">View</a>
+                        {% if job.user.id == session["user_id"] %}
+                        <a href="/jobs/{{job.id}}/edit">Edit</a>
+                        <a href="/jobs/{{job.id}}/cancel">Cancel</a>
+                        {% else %}
+                        <a href="/jobs/{{job.id}}/add_pro">Add</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </table>
+        </div>
+        <div class="column">
+            <table style="width:60%">
+                <tr class="tr">
+                    <th>Jobs</th>
+                    <th>Actions</th>
+                </tr>
+                {% for job in one_user_list.jobs %}
+                <tr class="td">
+                    <td>{{ job.title }}{{ job.id }}{{ job.pro_id }}{{ session["user_id"] }}</td>
+                    <td>
+                        {% if job.pro_id == session["user_id"] %}
+                        <a href="/jobs/{{job.id}}/view">View</a>
+                        <a href="/jobs/{{job.id}}/done">Done</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <a class="Aa" href="/jobs/new">Add A Job</a>
+        </div>
+    </div>

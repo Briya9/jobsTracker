@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    margin: 15px;
+}
+.large {
+    font-size: 24px;
+}
+.big-col {
+    flex: 8;
+    margin-top: 25px;
+    font-size: xx-large;
+    
+}
+.col {
+    flex: 1;
+}
+
+.label-col {
+    width: 150px;
+    margin: 10px 0px;
+    height: 35px;
+    font-size: x-large;
+}
+
+.offset-btn {
+    margin-left: 170px;
+    width: 100px;
+    background-color: rgb(12, 103, 34);
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 30px;
+    font-size: medium;
+}
+
+h1, h3 {
+    margin: 10px;
+}
+
+h1 {
+    margin-left: 20px;
+}
+input {
+    background-color: rgb(129, 190, 129);
+    border: 2px solid black;
+}
+.mess {
+    color: red;
+}

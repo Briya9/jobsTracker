@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='jobs_styles.css') }}">
+    <title>View Page</title>
+</head>
+
+<body>
+    <div class="container" , method="POST">
+        <p class="large big-col">View Job</p>
+        <p class="col"><a href="/jobs">Dashboard </a><a href="/logout"> Log out</a></p>
+    </div>
+    <div class="box">
+        <p>Title: {{ this_job.title }}</p>
+        <p>Description: {{ this_job.description }}</p>
+        <p>Location: {{ this_job.location }}</p>
+        <p>Posted By: {{ this_job.user.first_name}} {{ this_job.user.last_name}}</p>
+    </div>
+    <a class="Aa" href="/jobs/{{this_job.id}}/add_pro">Add To My Jobs</a>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='add_page_styles.css') }}">
+    <title>Edit Page</title>
+</head>
+
+<body>
+    <div class="container">
+        <p class="large big-col">Edit Your Job, {{ this_user.first_name }}!!!</p>
+        <p class="col"><a href="/jobs">Dashboard</a> <a href= "/logout"> Logout</a></p>
+    </div>
+    <form action="/jobs/{{ this_job.id }}/edit_in_db" method="POST">  
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="mess">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="container">
+            <label for="title" class="label-col">Title:</label>
+            <input type="text" name="title" id="title" value="{{ this_job.title }}" >
+        </div>
+        <div class="container">
+            <label for="description" class="label-col">Description:</label>
+            <textarea name="description" id="description"  rows="7" >{{ this_job.description}}</textarea>
+        </div>
+        <div class="container">
+            <label for="location" class="label-col">Location:</label>
+            <input type="text" name="location" id="location" value="{{ this_job.location }}" >
+        </div>
+        <input type="submit" value="Update" class="offset-btn">
+    </form>
+</body>
+
+</html>
